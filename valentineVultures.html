@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Valentine Vultures</title>
+            <link rel="stylesheet" type="text/css" href="designsWeb.css">
+        </head>
+        <body>
+            <div class="content">
+            <h1>Valentine Vultures</h1>
+            <p>Pisay-SMC has changed Love Report into Chemistry Day for this year's Valentines Day celebration. However, this does not stop students from sharing their feelings!</p>
+            <p>During Chemistry Day, the following amounts of students took various moves on their loved ones, counted as seen in the tables below:</p>
+            <div class="tables">
+                <div class="box">
+                    <h2>Amount of Scholars who confessed to their crush</h2>
+                    <hr>
+                    <p id="rand1"></p>
+                </div>
+                <div class="box">
+                    <h2>Amount of Scholars who gave gifts to their special ones</h2>
+                    <hr>
+                    <p id="rand2"></p>
+                </div>
+                <div class="box">
+                    <h2>Amount of Scholars who became official with their crush (also non-Pisay crushes)</h2>
+                    <hr>
+                    <p id="rand3"></p>
+                </div>
+            </div>
+            <p>The most frequent thing that happened was: </p>
+            <p id="mostFrequent">  </p>
+            <p>The first name of the student who first confessed to his/her crush on this day starts with the letter: <span id="letEquiv"></span></p>
+            <p>He/she confessed <span id="totalMin"></span> minutes after the school day started (7:30 AM), which is also equivalent to <span id="hoursTime"></span> hour/s and <span id="minutesTime"></span> minute/s.</p>
+        </div>
+
+        <script>
+        let num1 = Math.floor(Math.random() * 20) + 1;
+        let num2 = Math.floor(Math.random() * 20) + 1;
+        let num3 = Math.floor(Math.random() * 20) + 1;
+
+        document.getElementById("rand1").textContent = num1;
+        document.getElementById("rand2").textContent = num2;
+        document.getElementById("rand3").textContent = num3;
+
+        let max;
+        if (num1 >= num2 && num1 >= num3) {
+            max = num1;
+        } else if (num2 >= num1 && num2 >= num3) {
+            max = num2;
+        } else {
+            max = num3;
+        }
+
+        let mostFrequentText = "";
+        if (num1 === max && num2 === max && num3 === max) {
+            mostFrequentText = "Scholars confessing to their crush, scholars giving gifts to their loved ones, and scholars becoming official with their crush.";
+        } else if (num1 === max && num2 === max) {
+            mostFrequentText = "Scholars confessing to their crush and scholars giving gifts to their loved ones.";
+        } else if (num1 === max && num3 === max) {
+            mostFrequentText = "Scholars confessing to their crush and scholars becoming official with their crush.";
+        } else if (num2 === max && num3 === max) {
+            mostFrequentText = "Scholars giving gifts to their loved ones and scholars becoming official with their crush.";
+        } else if (num1 === max) {
+            mostFrequentText = "Scholars confessing to their crush.";
+        } else if (num2 === max) {
+            mostFrequentText = "Scholars giving gifts to their loved ones.";
+        } else {
+            mostFrequentText = "Scholars becoming official with their crush.";
+        }
+
+        document.getElementById("mostFrequent").textContent = mostFrequentText + " (" + max + " scholars each)";
+
+        function convertToLetter(num){
+            return String.fromCharCode(64 + num)
+        }
+        document.getElementById("letEquiv").textContent = convertToLetter(num1);
+
+        var timeMinutes=num2*num3;
+        document.getElementById("totalMin").textContent = timeMinutes;
+
+        var hourTime= parseInt(timeMinutes / 60);
+        document.getElementById("hoursTime").textContent = hourTime;
+        var minTime= parseInt(timeMinutes % 60);
+        document.getElementById("minutesTime").textContent = minTime;
+        
+        </script>
+        </body>
+    </html>
